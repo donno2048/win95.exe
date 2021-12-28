@@ -1,44 +1,41 @@
-<!doctype html>
-<script src="js-dos.js"></script>
-<body>
-    <style>
-        body {
-            background-image: url('bliss.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        #Progress {
-            width: 100%;
-            background-color: grey;
-        }
-        #Bar {
-            width: 0%;
-            height: 30px;
-            background-color: green;
-        }
-        button {
-            visibility: hidden;
-        }
-    </style>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="static/favicon.ico"/>
+        <script src="static/js-dos.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+                background-image: url('static/bliss.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            #Progress {
+                width: 100%;
+                background-color: grey;
+            }
+            #Bar {
+                width: 0%;
+                height: 30px;
+                background-color: green;
+            }
+            canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+        <title>WIN95</title>
         <div id="Progress">
             <div id="Bar"></div>
         </div>
-    <center>
-        <canvas id="jsdos"></canvas>
-        <br/>
-        <button onclick="ci.fullscreen()">Fullscreen</button>
-    </center>
-    <script>
-        Dos(document.getElementById("jsdos"), { autolock: true, onprogress: (stage, total, loaded) => {document.getElementById("Bar").style.width = Math.floor(loaded * 99 / total) + "%"}}).ready((fs, main) => {
-            fs.extract("win95.zip").then(() => {
-                document.getElementById("Bar").style.height = "0px";
-                main(["-c", "imgmount d c.img", "-c", "boot c.img"]).then((ci) => {
-                    window.ci = ci;
-                    document.getElementsByTagName("button")[0].style.visibility = 'initial';
-                    ci.simulateKeyPress(32);
-                })
-            });
-        });
-    </script>
-</body>
+        <canvas></canvas>
+        <script>
+            Dos(document.getElementsByTagName("canvas")[0], { autolock: true, onprogress: (stage, total, loaded) => {document.getElementById("Bar").style.width = Math.floor(loaded * 100 / total) + "%"}}).ready((fs, main) => {fs.extract("static/win95.zip").then(() => {main(["-c", "imgmount d c.img", "-c", "boot c.img"]).then(ci => ci.simulateKeyPress(32));});});
+        </script>
+    </body>
+</html>
