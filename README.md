@@ -11,7 +11,7 @@ pip install -r requirements.txt
 Try running the following command, if you get an error, try `pip uninstall dataclasses -y` and/or rerun it.
 
 ```bat
-PyInstaller --noconfirm --onefile --windowed --icon "static/favicon.ico" --add-data "index.html;." --add-data "static/*;static" main.py
+PyInstaller --noconfirm --onefile --windowed --icon "static/favicon.ico" --add-data "index.html;." --add-data "static/*;static" main.py -n win95
 ```
 
 The exe will be located in _dist/main.exe_

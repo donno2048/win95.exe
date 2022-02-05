@@ -1,9 +1,5 @@
-from flask import Flask
+from dflask import DirectFlask
 from flaskwebgui import FlaskUI
 from pathlib import Path
 import sys
-app = Flask(__name__, static_folder=Path(getattr(sys, '_MEIPASS', Path.cwd())) / 'static')
-ui = FlaskUI(app)
-@app.route('/')
-def index(): return open(Path(getattr(sys, '_MEIPASS', Path.cwd())) / 'index.html').read()
-if __name__ == '__main__': ui.run()
+if __name__ == '__main__': FlaskUI(DirectFlask(__name__, static_folder=Path(getattr(sys, '_MEIPASS', Path.cwd())) / 'static').add_response("/", open(Path(getattr(sys, '_MEIPASS', Path.cwd())) / 'index.html').read())).run()
