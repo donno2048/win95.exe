@@ -1,5 +1,8 @@
 # Windows95 as an exe
 
+> [!WARNING]
+> As of 15/01/2025 this method is deprecated and the repository is archived, as packing with pake seems to be simpler and better, win95.msi can be found in the releases page
+
 ## Install requirements
 
 ```bat
